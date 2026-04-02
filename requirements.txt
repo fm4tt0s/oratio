@@ -1,0 +1,11 @@
+mcp
+langchain
+langchain-community
+langchain-anthropic
+langchain-openai
+langchain-huggingface
+sentence-transformers==3.4.1
+pypdf
+faiss-cpu
+python-dotenv
+uvicorn

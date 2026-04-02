@@ -1,0 +1,81 @@
+{
+  "name": "oratio",
+  "displayName": "Oratio",
+  "description": "Oratio — check text against your corporate style guide PDF right inside VS Code. Powered by a local RAG server and your LLM of choice (Ollama, OpenAI, etc.).",
+  "author": "Felipe Mattos <fmattos@gmx.com> (http://about.me/fmattos)",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fmattos/oratio.git"
+  },
+  "license": "MIT",
+  "private": true,
+  "version": "0.2.0",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Linters"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "styleGuide.checkSelection",
+        "title": "Oratio Style Guide: Check Selection"
+      },
+      {
+        "command": "styleGuide.checkDocument",
+        "title": "Oratio Style Guide: Check Full Document"
+      },
+      {
+        "command": "styleGuide.askQuestion",
+        "title": "Oratio Style Guide: Ask a Question"
+      },
+      {
+        "command": "styleGuide.clearDiagnostics",
+        "title": "Oratio Style Guide: Clear All Diagnostics"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "styleGuide.checkSelection",
+          "when": "editorHasSelection",
+          "group": "styleGuide@1"
+        },
+        {
+          "command": "styleGuide.checkDocument",
+          "when": "editorIsOpen",
+          "group": "styleGuide@2"
+        },
+        {
+          "command": "styleGuide.askQuestion",
+          "group": "styleGuide@3"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Style Guide Checker",
+      "properties": {
+        "styleGuide.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:5123",
+          "description": "URL of the Oratio style guide RAG server (run `make server-http` to start it)"
+        },
+        "styleGuide.timeoutMs": {
+          "type": "number",
+          "default": 180000,
+          "description": "Request timeout in ms. Increase for slow local models (Ollama). Default: 180000 (3 min)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "npm run compile && npx @vscode/vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0"
+  }
+}

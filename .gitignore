@@ -1,0 +1,26 @@
+# style docs
+style-docs/
+
+# out/build/dependency directory and all its contents
+build/
+vscode/out/
+vscode/node_modules/
+venv/
+.venv/
+target/
+__pycache__/
+
+# log files
+*.log
+
+# env var files
+.env
+
+# config files specific to certain IDEs/OSes
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# execption: do not ignore the "important.log" file, even if it matches "*.log" above
+!important.log
