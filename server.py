@@ -3,7 +3,7 @@ server.py — MCP server for the Writing Style Guide Expert.
 
 Exposes two tools:
   ask_writing_style_guide(question: str) -> str   Q&A against the PDF
-  check_text_style(text: str) -> str              Review text for style violations
+  oratio_check_text_style(text: str) -> str              Review text for style violations
 
 Compatible with Claude Desktop and VS Code (via MCP extension).
 """
@@ -30,7 +30,7 @@ def ask_writing_style_guide(question: str) -> str:
 
 
 @mcp.tool()
-def check_text_style(text: str) -> str:
+def oratio_check_text_style(text: str) -> str:
     """
     Review a piece of text against the Writing Style Guide.
 
@@ -48,7 +48,7 @@ def check_text_style(text: str) -> str:
       - A full API reference section
       - A release note draft
     """
-    return rag.check_text_style(text)
+    return rag.oratio_check_text_style(text)
 
 
 if __name__ == "__main__":

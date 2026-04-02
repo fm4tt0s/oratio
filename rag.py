@@ -243,7 +243,7 @@ def _build_llm():
                 "OPENROUTER_API_KEY is not set. "
                 "Add it to your .env file (see .env.example)."
             )
-        model = os.getenv("OPENROUTER_MODEL", "mistralai/mistral-7b-instruct:free")
+        model = os.getenv("OPENROUTER_MODEL", "mistralai/openrouter/free")
         print(f"Using backend: OpenRouter ({model})")
 
         return ChatOpenAI(
@@ -254,14 +254,14 @@ def _build_llm():
             default_headers={
                 # Recommended by OpenRouter for attribution + rate limit tiers
                 "HTTP-Referer": os.getenv("OPENROUTER_SITE_URL", "http://localhost"),
-                "X-Title": os.getenv("OPENROUTER_SITE_NAME", "Style Guide MCP"),
+                "X-Title": os.getenv("OPENROUTER_SITE_NAME", "Oratio"),
             },
         )
 
     else:
         raise ValueError(
             f"Unknown LLM_BACKEND '{LLM_BACKEND}'. "
-            "Set LLM_BACKEND to 'claude', 'copilot', or 'openrouter' in your .env file."
+            "Set LLM_BACKEND to 'claude', 'copilot', 'ollama' or 'openrouter' in your .env file."
         )
 
 
