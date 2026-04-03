@@ -243,7 +243,7 @@ def _build_llm():
                 "OPENROUTER_API_KEY is not set. "
                 "Add it to your .env file (see .env.example)."
             )
-        model = os.getenv("OPENROUTER_MODEL", "mistralai/openrouter/free")
+        model = os.getenv("OPENROUTER_MODEL", "openrouter/free")
         print(f"Using backend: OpenRouter ({model})")
 
         return ChatOpenAI(
@@ -261,7 +261,7 @@ def _build_llm():
     else:
         raise ValueError(
             f"Unknown LLM_BACKEND '{LLM_BACKEND}'. "
-            "Set LLM_BACKEND to 'claude', 'copilot', 'ollama' or 'openrouter' in your .env file."
+            "Set LLM_BACKEND to 'claude', 'copilot', 'openrouter', or 'ollama' in your .env file."
         )
 
 
