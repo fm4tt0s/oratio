@@ -120,7 +120,7 @@ def call_llm(prompt: str) -> str:
             base_url="https://openrouter.ai/api/v1",
             default_headers={
                 "HTTP-Referer": os.getenv("OPENROUTER_SITE_URL", "http://localhost"),
-                "X-Title": os.getenv("OPENROUTER_SITE_NAME", "Style Guide MCP"),
+                "X-Title": os.getenv("OPENROUTER_SITE_NAME", "Oratio"),
             },
         )
         resp = client.chat.completions.create(
