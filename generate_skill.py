@@ -10,7 +10,7 @@ Output:
     skill_output/system_prompt.md   ← paste this into Claude.ai Project Instructions
     skill_output/INSTRUCTIONS.md    ← step-by-step setup guide
 """
-
+# pylint: disable=line-too-long
 import os
 import sys
 from dotenv import load_dotenv
@@ -168,6 +168,7 @@ def call_llm(prompt: str) -> str:
 # ── Output writers ────────────────────────────────────────────────────────────
 
 def write_system_prompt(system_prompt: str) -> str:
+    """Function creating the system prompt."""
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     path = os.path.join(OUTPUT_DIR, "system_prompt.md")
     with open(path, "w") as f:
@@ -178,6 +179,7 @@ def write_system_prompt(system_prompt: str) -> str:
 
 
 def write_instructions(pdf_filename: str) -> str:
+    """Function writing INSTRUCTIONS.md."""
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     path = os.path.join(OUTPUT_DIR, "INSTRUCTIONS.md")
     content = f"""# Setting Up Your Claude.ai Project
@@ -233,6 +235,7 @@ system prompt, then repeat Steps 2–3.
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def write_claude_md(claude_md: str) -> str:
+    """Function writing CLAUDE.md."""
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     path = os.path.join(OUTPUT_DIR, "CLAUDE.md")
     with open(path, "w") as f:
@@ -242,6 +245,7 @@ def write_claude_md(claude_md: str) -> str:
 
 
 def write_skill_md(skill_md: str) -> str:
+    """Function writing SKILL.md."""
     skill_dir = os.path.join(OUTPUT_DIR, "writing-style-guide-skill")
     os.makedirs(skill_dir, exist_ok=True)
     path = os.path.join(skill_dir, "SKILL.md")
@@ -251,6 +255,7 @@ def write_skill_md(skill_md: str) -> str:
 
 
 def main():
+    """Main function."""
     if not os.path.exists(PDF_PATH):
         print(f"ERROR: PDF not found at {PDF_PATH}")
         print("Set PDF_PATH in your .env file.")
