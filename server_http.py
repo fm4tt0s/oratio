@@ -187,7 +187,7 @@ class Handler(BaseHTTPRequestHandler):
             if not text:
                 self._send_json(400, {"error": "Missing 'text' field"})
                 return
-            raw = rag.check_text_style(text)
+            raw = rag.oratio_check_text_style(text)
             self._send_json(200, _parse_review(raw))
 
         elif self.path == "/ask":
