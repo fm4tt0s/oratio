@@ -66,6 +66,62 @@ the system prompt itself, starting with the role statement.
 --- STYLE GUIDE TEXT END ---"""
 
 
+
+CLAUDE_MD_PROMPT = """You are a technical writer and prompt engineer.
+
+I will give you the full text of a corporate Writing Style Guide.
+Your job is to produce a CLAUDE.md instruction file that makes Claude Code
+behave as a style guide expert whenever it works in this project or globally.
+
+The CLAUDE.md must:
+1. Open with a brief description of what this file does and when Claude should apply it
+2. List the most important rules from the guide, grouped by category
+   (e.g. Contractions, Terminology, Punctuation, Formatting, Tone, Inclusive language)
+3. Include specific approved/prohibited examples from the guide
+4. Tell Claude how to respond when asked to:
+   a) Answer a question about a rule
+   b) Check a piece of text for  show each violation with Found/Fixviolations 
+   c) Suggest a rewrite
+5. Be  CLAUDE.md is loaded into context on every session, so keep it under 300 linesconcise 
+6. Cite page numbers where helpful
+
+{extra_context_block}
+
+Format as clean Markdown. Output only the CLAUDE.md  no preamble.content 
+Start with a level-1 heading: # Writing Style Guide
+
+--- STYLE GUIDE TEXT START ---
+{pdf_text}
+--- STYLE GUIDE TEXT END ---"""
+
+
+SKILL_MD_PROMPT = """You are a technical writer and prompt engineer.
+
+I will give you the full text of a corporate Writing Style Guide.
+Your job is to produce a SKILL.md file in the Claude Code skill format.
+This skill will be installed in ~/.claude/skills/ and used across all projects.
+
+The SKILL.md must have:
+1. A YAML frontmatter block with:
+   - name: writing-style-guide
+   - description: a detailed trigger description (2-4 sentences) explaining when Claude
+     should consult this  be specific about keywords and contexts that should trigger it,skill 
+     e.g. "whenever the user asks about style rules, requests a text review, asks to check
+     documentation, or pastes text asking for feedback"
+2. A body with:
+   - A brief overview of what this skill does
+   - The most important rules from the guide grouped by category
+   - Specific approved/prohibited examples
+   - How to format a style review response (verdict, issues with Found/Fix, summary)
+   - Page citation instructions
+
+{extra_context_block}
+
+Keep the total file under 400 lines. Output only the SKILL.md  no preamble.content 
+
+--- STYLE GUIDE TEXT START ---
+{pdf_text}
+--- STYLE GUIDE TEXT END ---"""
 # ── PDF extraction ────────────────────────────────────────────────────────────
 
 def extract_pdf_text(path: str, max_chars: int = 80000) -> str:
