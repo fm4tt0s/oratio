@@ -7,7 +7,9 @@ Exposes two tools:
 
 Compatible with Claude Desktop and VS Code (via MCP extension).
 """
-
+# ignore some linting rules
+# pylint: disable=line-too-long
+# pyright: reportMissingImports=false
 from mcp.server.fastmcp import FastMCP
 import rag
 

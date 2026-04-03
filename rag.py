@@ -11,7 +11,7 @@ Exposes two public functions:
 
 Uses the modern LangChain LCEL API — no deprecated RetrievalQA or langchain.chains.
 """
-
+# pylint: disable=line-too-long
 import os
 from typing import Optional
 

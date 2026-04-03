@@ -11,7 +11,9 @@ Run with:
   # or directly:
   .venv/bin/python server_http.py
 """
-
+# ignore some linting rules
+# pylint: disable=line-too-long
+# pyright: reportMissingImports=false
 import json
 import os
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -139,7 +141,7 @@ def _parse_review(raw: str) -> dict:
 
 
 class Handler(BaseHTTPRequestHandler):
-
+    """HTTP request handler for the Oratio style guide server."""
     def log_message(self, format: str, *args) -> None:  # type: ignore
         # Suppress default access log noise; keep errors
         if int(args[1]) >= 400 if len(args) > 1 else False:
@@ -163,6 +165,7 @@ class Handler(BaseHTTPRequestHandler):
             pass  # Client disconnected (e.g. extension timed out) — safe to ignore
 
     def do_OPTIONS(self) -> None:  # CORS preflight
+        """Respond to CORS preflight requests."""
         self.send_response(204)
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
@@ -170,12 +173,14 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self) -> None:
+        """Handle GET requests for health checks."""
         if self.path == "/health":
             self._send_json(200, {"status": "ok", "port": PORT})
         else:
             self._send_json(404, {"error": "Not found"})
 
     def do_POST(self) -> None:
+        """Handle POST requests for /check and /ask endpoints."""
         try:
             body = self._read_body()
         except Exception as e:

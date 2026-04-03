@@ -10,7 +10,9 @@ Output:
     skill_output/system_prompt.md   ← paste this into Claude.ai Project Instructions
     skill_output/INSTRUCTIONS.md    ← step-by-step setup guide
 """
+# ignore some linting rules
 # pylint: disable=line-too-long
+# pyright: reportMissingImports=false
 import os
 import sys
 from dotenv import load_dotenv
