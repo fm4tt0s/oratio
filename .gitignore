@@ -9,6 +9,7 @@ venv/
 .venv/
 target/
 __pycache__/
+*.vsix
 
 # log files
 *.log
