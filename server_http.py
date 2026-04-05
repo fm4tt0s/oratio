@@ -12,8 +12,8 @@ Run with:
   .venv/bin/python server_http.py
 """
 # ignore some linting rules
-# pylint: disable=line-too-long
 # pyright: reportMissingImports=false
+# pylint: disable=line-too-long,invalid-name,redefined-builtin
 import json
 import os
 from http.server import BaseHTTPRequestHandler, HTTPServer

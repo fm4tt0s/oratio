@@ -11,7 +11,9 @@ Exposes two public functions:
 
 Uses the modern LangChain LCEL API — no deprecated RetrievalQA or langchain.chains.
 """
-# pylint: disable=line-too-long
+# ignore some linting rules
+# pyright: reportMissingImports=false
+# pylint: disable=global-statement,global-variable-not-assigned,line-too-long,broad-exception-caught,invalid-name
 import os
 from typing import Optional
 
